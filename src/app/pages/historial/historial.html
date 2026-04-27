@@ -1,51 +1,73 @@
-<div class="py-8">
-  <div class="flex justify-between items-center mb-6">
-    <h1 class="text-2xl font-bold text-amber-900">Historial de Precios</h1>
-    <a routerLink="/formulario" 
-       class="bg-amber-900 text-white px-4 py-2 rounded-lg hover:bg-amber-700 transition">
-      + Registrar precio
-    </a>
-  </div>
-
-  @if (cargando) {
-    <p class="text-gray-400">Cargando...</p>
-  }
-
-  @if (error) {
-    <p class="text-red-500">No se pudo cargar el historial.</p>
-  }
-
-  @if (!cargando && precios.length === 0) {
-    <p class="text-gray-500">No hay precios registrados aún.</p>
-  }
-
-  @if (precios.length > 0) {
-    <div class="bg-white rounded-xl shadow overflow-hidden">
-      <table class="w-full text-left">
-        <thead class="bg-amber-900 text-white">
-          <tr>
-            <th class="px-6 py-3">Precio</th>
-            <th class="px-6 py-3">Unidad</th>
-            <th class="px-6 py-3">Fecha</th>
-            <th class="px-6 py-3">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (precio of precios; track precio.id) {
-            <tr class="border-t hover:bg-amber-50">
-              <td class="px-6 py-4 font-bold text-amber-800">${{ precio.precio }}</td>
-              <td class="px-6 py-4 text-gray-600">{{ precio.unidad }}</td>
-              <td class="px-6 py-4 text-gray-600">{{ precio.fecha }}</td>
-              <td class="px-6 py-4 flex gap-2">
-                <a [routerLink]="['/formulario', precio.id]"
-                   class="text-blue-600 hover:underline">Editar</a>
-                <button (click)="eliminar(precio.id)"
-                        class="text-red-600 hover:underline">Eliminar</button>
-              </td>
-            </tr>
-          }
-        </tbody>
-      </table>
+<div class="bg-stone-50 min-h-screen py-10 px-8">
+  <div class="max-w-5xl mx-auto">
+    
+    <div class="flex justify-between items-start mb-6">
+      <div>
+        <h1 class="text-3xl font-bold text-amber-900">Historial de precios</h1>
+        <p class="text-gray-500 mt-1">Consulta y administra todos los precios registrados.</p>
+      </div>
+      <a routerLink="/formulario"
+         class="bg-green-700 text-white px-5 py-2 rounded-lg hover:bg-green-800 transition font-medium">
+        + Nuevo precio
+      </a>
     </div>
-  }
+
+    @if (cargando) {
+      <p class="text-gray-400">Cargando...</p>
+    } @else if (error) {
+      <p class="text-red-500">No se pudo cargar el historial.</p>
+    } @else if (precios.length === 0) {
+      <p class="text-gray-500">No hay precios registrados aún.</p>
+    } @else {
+      <div class="bg-white rounded-xl shadow overflow-hidden">
+        <table class="w-full text-left">
+          <thead class="bg-green-800 text-white">
+            <tr>
+              <th class="px-6 py-4">Precio</th>
+              <th class="px-6 py-4">Unidad</th>
+              <th class="px-6 py-4">Fecha</th>
+              <th class="px-6 py-4">Creado en</th>
+              <th class="px-6 py-4">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (precio of preciosPaginados; track precio.id) {
+              <tr class="border-t hover:bg-stone-50">
+                <td class="px-6 py-4 font-bold text-amber-900">$ {{ precio.precio | number }}</td>
+                <td class="px-6 py-4 text-gray-600">{{ precio.unidad }}</td>
+                <td class="px-6 py-4 text-gray-600">{{ precio.fecha }}</td>
+                <td class="px-6 py-4 text-gray-400 text-sm">{{ precio.creado_en | date:'dd/MM/yyyy HH:mm' }}</td>
+                <td class="px-6 py-4 flex gap-3">
+                  <a [routerLink]="['/formulario', precio.id]"
+                     class="text-green-700 hover:text-green-900 font-medium">Editar</a>
+                  <button (click)="eliminar(precio.id)"
+                          class="text-red-500 hover:text-red-700 font-medium">Eliminar</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <div class="flex justify-center gap-2 mt-6">
+        <button (click)="paginaAnterior()"
+                [disabled]="paginaActual === 1"
+                class="px-3 py-1 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-100 disabled:opacity-40">
+          &laquo;
+        </button>
+        @for (p of paginas; track p) {
+          <button (click)="irAPagina(p)"
+                  [class]="paginaActual === p ? 'px-3 py-1 rounded-lg bg-green-700 text-white font-bold' : 'px-3 py-1 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-100'">
+            {{ p }}
+          </button>
+        }
+        <button (click)="paginaSiguiente()"
+                [disabled]="paginaActual === totalPaginas"
+                class="px-3 py-1 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-100 disabled:opacity-40">
+          &raquo;
+        </button>
+      </div>
+    }
+
+  </div>
 </div>
