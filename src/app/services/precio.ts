@@ -20,7 +20,7 @@ export interface PrecioCreate {
   providedIn: 'root'
 })
 export class PrecioService {
-  private apiUrl = 'http://localhost:8000';
+  private apiUrl = 'https://reto-cacao-backend-production.up.railway.app';
 
   constructor(private http: HttpClient) {}
 
