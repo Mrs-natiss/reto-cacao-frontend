@@ -1,0 +1,51 @@
+<div class="py-8">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold text-amber-900">Historial de Precios</h1>
+    <a routerLink="/formulario" 
+       class="bg-amber-900 text-white px-4 py-2 rounded-lg hover:bg-amber-700 transition">
+      + Registrar precio
+    </a>
+  </div>
+
+  @if (cargando) {
+    <p class="text-gray-400">Cargando...</p>
+  }
+
+  @if (error) {
+    <p class="text-red-500">No se pudo cargar el historial.</p>
+  }
+
+  @if (!cargando && precios.length === 0) {
+    <p class="text-gray-500">No hay precios registrados aún.</p>
+  }
+
+  @if (precios.length > 0) {
+    <div class="bg-white rounded-xl shadow overflow-hidden">
+      <table class="w-full text-left">
+        <thead class="bg-amber-900 text-white">
+          <tr>
+            <th class="px-6 py-3">Precio</th>
+            <th class="px-6 py-3">Unidad</th>
+            <th class="px-6 py-3">Fecha</th>
+            <th class="px-6 py-3">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (precio of precios; track precio.id) {
+            <tr class="border-t hover:bg-amber-50">
+              <td class="px-6 py-4 font-bold text-amber-800">${{ precio.precio }}</td>
+              <td class="px-6 py-4 text-gray-600">{{ precio.unidad }}</td>
+              <td class="px-6 py-4 text-gray-600">{{ precio.fecha }}</td>
+              <td class="px-6 py-4 flex gap-2">
+                <a [routerLink]="['/formulario', precio.id]"
+                   class="text-blue-600 hover:underline">Editar</a>
+                <button (click)="eliminar(precio.id)"
+                        class="text-red-600 hover:underline">Eliminar</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

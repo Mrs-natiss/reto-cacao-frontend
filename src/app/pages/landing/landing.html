@@ -1,0 +1,31 @@
+<div class="min-h-screen bg-amber-50 flex flex-col items-center justify-center p-6">
+  
+  <div class="bg-white rounded-2xl shadow-lg p-10 max-w-md w-full text-center">
+    <h1 class="text-3xl font-bold text-amber-900 mb-2">Precio del Cacao</h1>
+    <p class="text-gray-500 mb-8">Precio más reciente registrado en el sistema</p>
+
+    @if (cargando) {
+      <p class="text-gray-400">Cargando...</p>
+    }
+
+    @if (error) {
+      <p class="text-red-500">No se pudo cargar el precio. Intenta de nuevo.</p>
+    }
+
+    @if (ultimoPrecio) {
+      <div class="bg-amber-100 rounded-xl p-6 mb-6">
+        <p class="text-5xl font-bold text-amber-800">
+          ${{ ultimoPrecio.precio }}
+        </p>
+        <p class="text-lg text-amber-600 mt-2">{{ ultimoPrecio.unidad }}</p>
+        <p class="text-sm text-gray-500 mt-2">{{ ultimoPrecio.fecha }}</p>
+      </div>
+    }
+
+    <a routerLink="/historial" 
+       class="bg-amber-900 text-white px-6 py-3 rounded-lg hover:bg-amber-700 transition">
+      Ver historial completo
+    </a>
+  </div>
+
+</div>

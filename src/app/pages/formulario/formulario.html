@@ -1,0 +1,56 @@
+<div class="py-8 max-w-md mx-auto">
+  <h1 class="text-2xl font-bold text-amber-900 mb-6">
+    {{ editando ? 'Editar Precio' : 'Registrar Precio' }}
+  </h1>
+
+  @if (error) {
+    <p class="text-red-500 mb-4">Por favor completa todos los campos correctamente.</p>
+  }
+
+  <div class="bg-white rounded-xl shadow p-6 flex flex-col gap-4">
+    
+    <div>
+      <label class="block text-gray-700 font-medium mb-1">Precio</label>
+      <input 
+        type="number" 
+        [(ngModel)]="precio"
+        placeholder="Ej: 3500.00"
+        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500"
+      />
+    </div>
+
+    <div>
+      <label class="block text-gray-700 font-medium mb-1">Unidad</label>
+      <select 
+        [(ngModel)]="unidad"
+        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500"
+      >
+        <option value="">Selecciona una unidad</option>
+        <option value="USD/kg">USD/kg</option>
+        <option value="USD/ton">USD/ton</option>
+        <option value="COP/kg">COP/kg</option>
+        <option value="COP/ton">COP/ton</option>
+      </select>
+    </div>
+
+    <div>
+      <label class="block text-gray-700 font-medium mb-1">Fecha</label>
+      <input 
+        type="date" 
+        [(ngModel)]="fecha"
+        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500"
+      />
+    </div>
+
+    <button 
+      (click)="guardar()"
+      class="bg-amber-900 text-white px-6 py-3 rounded-lg hover:bg-amber-700 transition font-medium">
+      {{ editando ? 'Guardar cambios' : 'Registrar precio' }}
+    </button>
+
+    <a routerLink="/historial" class="text-center text-gray-500 hover:underline">
+      Cancelar
+    </a>
+
+  </div>
+</div>
