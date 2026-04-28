@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
@@ -18,11 +18,13 @@ export class FormularioComponent implements OnInit {
   idEditar: number | null = null;
   error = false;
   exito = false;
+  hoy = new Date().toISOString().split('T')[0];
 
   constructor(
     private precioService: PrecioService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -37,6 +39,7 @@ export class FormularioComponent implements OnInit {
             this.precio = encontrado.precio;
             this.unidad = encontrado.unidad;
             this.fecha = encontrado.fecha;
+            this.cdr.detectChanges();
           }
         }
       });

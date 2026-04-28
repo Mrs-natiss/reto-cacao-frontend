@@ -1,17 +1,7 @@
-<nav class="bg-white border-b border-gray-200 px-8 py-4 flex items-center justify-between">
-  <div class="flex items-center gap-3">
-    <img src="cacao.png" class="w-10 h-10 object-contain" />
-    <div>
-      <p class="font-bold text-amber-900 text-lg leading-none">Registro de Precios</p>
-      <p class="text-xs text-green-700 font-medium tracking-widest">DE CACAO</p>
-    </div>
-  </div>
-  <div class="flex gap-8">
-    <a routerLink="/" class="text-gray-700 hover:text-green-700 font-medium">Inicio</a>
-    <a routerLink="/historial" class="text-gray-700 hover:text-green-700 font-medium">Historial de precios</a>
-  </div>
-</nav>
+<app-navbar />
 
 <main>
   <router-outlet />
 </main>
+
+<app-footer />
