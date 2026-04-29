@@ -1,4 +1,4 @@
-<div class="bg-stone-50 min-h-screen py-10 px-8">
+<div class="bg-stone-50 min-h-screen py-10 px-4 md:px-8">
   <div class="max-w-6xl mx-auto">
     
     <div class="flex justify-between items-start mb-6">
@@ -19,8 +19,8 @@
     } @else if (precios.length === 0) {
       <p class="text-gray-500">Aún no hay precios registrados. ¡Sé el primero en agregar uno!</p>
     } @else {
-      <div class="bg-white rounded-xl shadow overflow-hidden">
-        <table class="w-full text-left">
+      <div class="bg-white rounded-xl shadow overflow-x-auto">
+        <table class="w-full text-left min-w-[700px]">
           <thead class="bg-green-800 text-white">
             <tr>
               <th class="px-4 py-4">Precio</th>
