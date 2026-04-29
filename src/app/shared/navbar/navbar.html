@@ -1,13 +1,32 @@
-<nav class="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
-  <a routerLink="/" class="flex items-center gap-3 cursor-pointer">
-    <img src="cacao.png" class="w-10 h-10 object-contain" />
-    <div>
-      <p class="font-bold text-amber-900 text-lg leading-none">Registro de Precios</p>
-      <p class="text-xs text-green-700 font-medium tracking-widest">DE CACAO</p>
+<nav class="bg-white border-b border-gray-200 px-6 py-4">
+  <div class="flex items-center justify-between">
+    <a routerLink="/" class="flex items-center gap-3 cursor-pointer">
+      <img src="cacao.png" class="w-10 h-10 object-contain" />
+      <div>
+        <p class="font-bold text-amber-900 text-lg leading-none">Registro de Precios</p>
+        <p class="text-xs text-green-700 font-medium tracking-widest">DE CACAO</p>
+      </div>
+    </a>
+
+    <!-- Botón hamburguesa solo en móvil -->
+    <button (click)="menuAbierto = !menuAbierto" class="md:hidden flex flex-col gap-1 p-2">
+      <span class="block w-6 h-0.5 bg-amber-900"></span>
+      <span class="block w-6 h-0.5 bg-amber-900"></span>
+      <span class="block w-6 h-0.5 bg-amber-900"></span>
+    </button>
+
+    <!-- Links en desktop -->
+    <div class="hidden md:flex gap-8">
+      <a routerLink="/historial" class="bg-green-700 text-white px-3 py-1 rounded-lg hover:bg-green-800 font-medium">Historial</a>
+      <a routerLink="/formulario" class="bg-green-700 text-white px-3 py-1 rounded-lg hover:bg-green-800 font-medium">Registrar</a>
     </div>
-  </a>
-  <div class="flex gap-4 md:gap-8">
-    <a routerLink="/historial" class="bg-green-700 text-white px-3 py-1 rounded-lg hover:bg-green-800 font-medium text-sm md:text-base">Historial</a>
-    <a routerLink="/formulario" class="bg-green-700 text-white px-3 py-1 rounded-lg hover:bg-green-800 font-medium text-sm md:text-base">Registrar</a>
   </div>
+
+  <!-- Menú desplegable en móvil -->
+  @if (menuAbierto) {
+    <div class="md:hidden flex flex-col gap-3 mt-4">
+      <a routerLink="/historial" (click)="menuAbierto = false" class="bg-green-700 text-white px-4 py-2 rounded-lg hover:bg-green-800 font-medium text-center">Historial</a>
+      <a routerLink="/formulario" (click)="menuAbierto = false" class="bg-green-700 text-white px-4 py-2 rounded-lg hover:bg-green-800 font-medium text-center">Registrar</a>
+    </div>
+  }
 </nav>
