@@ -4,20 +4,20 @@
     <div class="flex justify-between items-start mb-6">
       <div>
         <h1 class="text-3xl font-bold text-amber-900">Historial de precios</h1>
-        <p class="text-gray-500 mt-1">Consulta y administra todos los precios registrados.</p>
+        <p class="text-gray-500 mt-1">Consulta, edita y gestiona todos los registros de precios del cacao.</p>
       </div>
       <a routerLink="/formulario"
          class="bg-green-700 text-white px-5 py-2 rounded-lg hover:bg-green-800 transition font-medium">
-        + Nuevo precio
+        + Registrar precio
       </a>
     </div>
 
     @if (cargando) {
-      <p class="text-gray-400">Cargando...</p>
+      <p class="text-gray-400">Cargando registros...</p>
     } @else if (error) {
-      <p class="text-red-500">No se pudo cargar el historial.</p>
+      <p class="text-red-500">No pudimos cargar el historial en este momento.</p>
     } @else if (precios.length === 0) {
-      <p class="text-gray-500">No hay precios registrados aún.</p>
+      <p class="text-gray-500">Aún no hay precios registrados. ¡Sé el primero en agregar uno!</p>
     } @else {
       <div class="bg-white rounded-xl shadow overflow-hidden">
         <table class="w-full text-left">

@@ -3,20 +3,20 @@
     
     <div>
       <h1 class="text-4xl md:text-5xl font-bold text-amber-900 leading-tight mb-4">
-        Precio actual <br>
-        <span class="text-green-700">del cacao</span>
+        El precio del cacao, <br>
+        <span class="text-green-700">siempre actualizado.</span>
       </h1>
-      <p class="text-gray-500 mb-8">Consulta el precio más reciente del cacao registrado en el sistema.</p>
+      <p class="text-gray-500 mb-8">Toma mejores decisiones comerciales con información clara y en tiempo real sobre el precio del cacao.</p>
 
       <div class="bg-white rounded-2xl shadow p-8 mb-6">
-        <p class="text-gray-500 font-medium mb-2">Precio más reciente</p>
+        <p class="text-gray-500 font-medium mb-2">Cotización más reciente</p>
 
         @if (cargando) {
-          <p class="text-gray-400">Cargando...</p>
+          <p class="text-gray-400">Obteniendo precio...</p>
         }
 
         @if (error) {
-          <p class="text-red-500">No se pudo cargar el precio.</p>
+          <p class="text-red-500">No pudimos cargar el precio en este momento.</p>
         }
 
         @if (ultimoPrecio) {
@@ -24,13 +24,13 @@
             $ {{ ultimoPrecio.precio | number }}
           </p>
           <p class="text-gray-500 font-medium mb-4">{{ ultimoPrecio.unidad }}</p>
-          <p class="text-gray-400 text-sm">Actualizado: {{ ultimoPrecio.fecha }}</p>
+          <p class="text-gray-400 text-sm">Registrado el {{ ultimoPrecio.fecha }}</p>
         }
       </div>
 
       <a routerLink="/historial"
          class="bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800 transition inline-flex items-center gap-2 font-medium">
-        Ver historial de precios
+        Ver historial completo
       </a>
     </div>
 
