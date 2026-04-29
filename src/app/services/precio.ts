@@ -8,12 +8,16 @@ export interface Precio {
   unidad: string;
   fecha: string;
   creado_en: string;
+  fuente?: string;
+  region?: string;
 }
 
 export interface PrecioCreate {
   precio: number;
   unidad: string;
   fecha: string;
+  fuente?: string;
+  region?: string;
 }
 
 @Injectable({

@@ -14,6 +14,8 @@ export class FormularioComponent implements OnInit {
   precio: number | null = null;
   unidad: string = '';
   fecha: string = '';
+  fuente: string = '';
+  region: string = '';
   editando = false;
   idEditar: number | null = null;
   error = false;
@@ -39,6 +41,8 @@ export class FormularioComponent implements OnInit {
             this.precio = encontrado.precio;
             this.unidad = encontrado.unidad;
             this.fecha = encontrado.fecha;
+            this.fuente = encontrado.fuente || '';
+            this.region = encontrado.region || '';
             this.cdr.detectChanges();
           }
         }
@@ -55,7 +59,9 @@ export class FormularioComponent implements OnInit {
     const datos: PrecioCreate = {
       precio: this.precio,
       unidad: this.unidad,
-      fecha: this.fecha
+      fecha: this.fecha,
+      fuente: this.fuente || undefined,
+      region: this.region || undefined
     };
 
     if (this.editando && this.idEditar) {
